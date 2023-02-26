@@ -43,22 +43,47 @@ function subirFichero1(form1, boton1, controlador1, divResultado1)
     // form1.
 }
 
-function mostrarImagen(){
-    let contador = 10;
-    for (let index = 1; index < contador; index++) {
+function dibujarImagenes(contador){
+    //let contador = cont;
+    for (let index = 1; index <= contador; index++) {
         //const element = array[index];
         let section1 = document.getElementById('sec-productos');
         let div1 = document.createElement('div');
+        let a1 = document.createElement('a');
         let imagen1 = document.createElement('img');
-        let p1 = document.createElement('p');
+        a1.href="detalle.html";
+        //let p1 = document.createElement('p');
         section1.append(div1);
-        div1.append(imagen1);
-        div1.append(p1);
-        div1.classList.add('col-3');
+        div1.id = 'div_'+index;
+        imagen1.id = 'img_'+index;
+        div1.append(a1);
+        a1.append(imagen1);
+        //div1.append(p1);
+        div1.classList.add('div_producto');
+        imagen1.classList.add('img_producto');
         imagen1.src="images/galeria/"+index+".jpg";
-        p1.innerHTML="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa ipsum veritatis quas soluta molestiae amet suscipit ullam.";
+        //p1.innerHTML="Lorem, ipsum dolor sit amet consectetur adipisicing elit.";
     }
-    
+}
+
+function peticionServidorCantidadFotos()
+{
+    let ajax1 = new XMLHttpRequest();
+
+    // 1. Devolución del servidor
+    ajax1.onreadystatechange = function(){
+        if (ajax1.readyState==4 && ajax1.status==200)
+        {
+            let contador =  Number(ajax1.responseText);
+            dibujarImagenes(contador);
+            //document.getElementById(d01.id).innerHTML = test2;
+        }
+    };
+
+    // 2. Envío de la petición al servidor
+    ajax1.open('GET','controllers/hola.php', true);
+    ajax1.send();
+
 }
 
 
@@ -67,40 +92,24 @@ window.addEventListener("load", function(event){
 
     // Establecer una referencia de los elementos
     const form1 = document.getElementById("form1");
-    const b01 = document.getElementById("b01");
 
     // Asociar el elemento al evento y llamada a la función
     if(form1)
     {
+        //mostrarImagen();
         
         const divResultado1 = document.getElementById("divResultado1");
-        const boton1 = document.getElementById("boton1");
+        //const boton1 = document.getElementById("boton1");
         let controlador1 = "controllers/subir-fichero.php";
-
+        
         form1.addEventListener("submit", function(event){
             event.preventDefault();
             subirFichero1(form1, boton1, controlador1, divResultado1);
         });
+    } else {
+        peticionServidorCantidadFotos();
     }
 
-    if(b01)
-    {
-        b01.addEventListener("click", function(event){
-            event.preventDefault();
-            mostrarImagen();
-        });
-    }
 
-    /*
-    {
-        b01.addEventListener("click", function(event){
-            event.preventDefault();
-            let caja1 = document.getElementById('caja1');
-            let imagen = document.createElement('img');
-            caja1.append(imagen);
-            caja1.classList.add('col-3');
-            imagen.src="images/foto4.jpg";
-        });
-    }*/
 
 });

@@ -43,8 +43,8 @@ nav a:hover{
 }
 
 .contenedor{
-    width: 80%;
-    margin: 20px auto;
+    width: 90%;
+    /* margin: 15px auto; */
 }
 
 .boton{
@@ -61,8 +61,19 @@ nav a:hover{
 }
 .align-center{
     text-align: center;
+    margin: auto;
 }
 
+.div_producto{
+    
+    padding: 20px;
+    margin: 15px auto;
+    width: 25%;
+}
+.img_producto{
+    
+    border-radius: 15px;
+}
 
 
 .col-1 {width: 8.33%;}

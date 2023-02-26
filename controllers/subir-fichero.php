@@ -12,12 +12,7 @@ while(!feof($filered)) {
 
 fclose($filered);
 
-//$contador--;
-
 $file = fopen("archivo.txt", "a");
-
-// fwrite($file, "Encabezado ". $contador. PHP_EOL);
-
 
 
 foreach ($_FILES['file1']['error'] as $key => $error)
