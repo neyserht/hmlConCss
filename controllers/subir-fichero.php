@@ -28,7 +28,7 @@ foreach ($_FILES['file1']['error'] as $key => $error)
 
         move_uploaded_file($tmp_name, "../images/galeria/" . $file_tmp);
         fwrite($file, $contador.".".$extension. PHP_EOL);
-        echo "Fichero (".$name.") subido correctamente -- Extension: |".$extension."|<br>";  
+        echo "Fichero subido correctamente<br>";  
         // echo $tmp_name ."--".$name."--".$extension;     
         $contador++;                                  
         break;
